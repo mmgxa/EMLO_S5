@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mmg-nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: mmg-nginx
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: mmg-nginx
+    spec:
+      containers:
+      - name: mmg-nginx
+        image: nginx:1.16
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
